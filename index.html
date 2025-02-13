@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            background: #444;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+        }
+        section {
+            padding: 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Travel Explorer</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#search">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="register">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Register</button>
+        </form>
+    </section>
+    
+    <section id="search">
+        <h2>Search Places</h2>
+        <input type="text" id="searchInput" placeholder="Search for a city...">
+        <button onclick="searchPlaces()">Search</button>
+        <div id="results"></div>
+    </section>
+    
+    <section id="places">
+        <h2>Popular Destinations</h2>
+        <div class="destination" id="pune">
+            <h3>Pune</h3>
+            <img src="pune.jpg" alt="Pune City">
+            <p>Historic places like Shaniwar Wada, Aga Khan Palace.</p>
+        </div>
+        <div class="destination" id="hyderabad">
+            <h3>Hyderabad</h3>
+            <img src="hyderabad.jpg" alt="Hyderabad City">
+            <p>Famous for Charminar, Golconda Fort.</p>
+        </div>
+        <div class="destination" id="chennai">
+            <h3>Chennai</h3>
+            <img src="chennai.jpg" alt="Chennai City">
+            <p>Explore Marina Beach, Kapaleeshwarar Temple.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Travel Explorer. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        function searchPlaces() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const destinations = document.querySelectorAll(".destination");
+            let found = false;
+            
+            destinations.forEach(destination => {
+                const cityName = destination.id.toLowerCase();
+                if (cityName.includes(searchInput)) {
+                    destination.style.display = "block";
+                    found = true;
+                } else {
+                    destination.style.display = "none";
+                }
+            });
+            
+            if (!found) {
+                document.getElementById("results").innerHTML = "<p>No results found</p>";
+            } else {
+                document.getElementById("results").innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>
